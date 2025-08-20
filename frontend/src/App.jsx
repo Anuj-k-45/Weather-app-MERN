@@ -17,6 +17,21 @@ export default function App() {
     setData(res);
   }
 
+  async function runForLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const res = await fetchCurrent({
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude,
+        });
+        setData(res);
+      });
+    } else {
+      alert("Geolocation not supported in this browser.");
+    }
+  }
+
+
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async (pos) => {
@@ -69,6 +84,12 @@ export default function App() {
           className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
         >
           Search
+        </button>
+        <button
+          onClick={runForLocation}
+          className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+        >
+          📍 Current Location
         </button>
       </div>
 
