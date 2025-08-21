@@ -12,13 +12,11 @@ app.use(express.json());
 
 // CORS
 const allowed = (process.env.ALLOWED_ORIGINS || "").split(",").filter(Boolean);
-app.use(
-  cors({
-    origin: "*", // Allow all origins (for testing)
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
-  })
-);
+app.use(cors({
+  origin: 'https://weather-app-mern-coral.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // Routes
 app.use("/api", weatherRouter);
