@@ -12,13 +12,13 @@ app.use(express.json());
 
 // CORS
 const allowed = (process.env.ALLOWED_ORIGINS || "").split(",").filter(Boolean);
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowed.length === 0 || allowed.includes(origin)) return cb(null, true);
-    return cb(new Error("Not allowed by CORS: " + origin));
-  },
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "*", // Allow all origins (for testing)
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 
 // Routes
 app.use("/api", weatherRouter);
