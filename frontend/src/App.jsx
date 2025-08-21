@@ -4,6 +4,8 @@ import WeatherCard from "./components/WeatherCard";
 import QueryForm from "./components/QueryForm";
 import QueryList from "./components/QueryList";
 import InfoModal from "./components/InfoModal";
+import logo from "./assets/logo.png";
+
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -56,7 +58,7 @@ export default function App() {
             rel="noreferrer"
           >
             <img
-              src="./src/assets/logo.png" // place logo inside frontend/public/
+              src={logo} // place logo inside frontend/public/
               alt="PM Accelerator Logo"
               className="h-10 w-auto" // ✅ adjust height, keep aspect ratio
             />
